@@ -1,0 +1,95 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Modelo Vista Controlador">
+    <mxGraphModel dx="1400" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="1">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Título -->
+        <mxCell id="10" value="Arquitectura Modelo – Vista – Controlador" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="120" y="120" width="820" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- VISTA — React -->
+        <mxCell id="2" value="&lt;font style=&quot;font-size:10px;letter-spacing:2px;&quot; color=&quot;#4a7c59&quot;&gt;VISTA&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:24px;font-weight:bold;&quot; color=&quot;#2d6a4f&quot;&gt;React&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;verticalAlign=middle;shadow=1;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="80" y="260" width="200" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- CONTROLADOR — NestJS -->
+        <mxCell id="3" value="&lt;font style=&quot;font-size:10px;letter-spacing:2px;&quot; color=&quot;#3a5f8a&quot;&gt;CONTROLADOR&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:24px;font-weight:bold;&quot; color=&quot;#1a3c5e&quot;&gt;NestJS&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;verticalAlign=middle;shadow=1;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="445" y="260" width="200" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- MODELO — MongoDB -->
+        <mxCell id="4" value="&lt;font style=&quot;font-size:10px;letter-spacing:2px;&quot; color=&quot;#9e6b00&quot;&gt;MODELO&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:24px;font-weight:bold;&quot; color=&quot;#7a4f00&quot;&gt;MongoDB&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d6b656;strokeWidth=2;verticalAlign=middle;shadow=1;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="810" y="260" width="200" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- EXTERNO — Cloudinary -->
+        <mxCell id="5" value="&lt;font style=&quot;font-size:10px;letter-spacing:2px;&quot; color=&quot;#a0392a&quot;&gt;SERVICIO EXTERNO&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:24px;font-weight:bold;&quot; color=&quot;#7b2218&quot;&gt;Cloudinary&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;verticalAlign=middle;shadow=1;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry x="445" y="460" width="200" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- Flecha Vista → Controlador -->
+        <mxCell id="6" value="&lt;font style=&quot;font-size:11px;&quot;&gt;HTTP / REST&lt;/font&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#555555;html=1;" edge="1" source="2" target="3" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Flecha Controlador → Modelo -->
+        <mxCell id="7" value="&lt;font style=&quot;font-size:11px;&quot;&gt;Mongoose ODM&lt;/font&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#555555;html=1;" edge="1" source="3" target="4" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Flecha Controlador → Cloudinary -->
+        <mxCell id="8" value="&lt;font style=&quot;font-size:11px;&quot;&gt;upload_stream&lt;/font&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#555555;html=1;" edge="1" source="3" target="5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- VISTA — React -->
+        <mxCell id="2" value="&lt;font style=&quot;font-size:11px;&quot;&gt;&lt;b&gt;VISTA&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:20px;&quot;&gt;React&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=middle;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="80" y="280" width="180" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- CONTROLADOR — NestJS -->
+        <mxCell id="3" value="&lt;font style=&quot;font-size:11px;&quot;&gt;&lt;b&gt;CONTROLADOR&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:20px;&quot;&gt;NestJS&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=middle;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="420" y="280" width="180" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- MODELO — MongoDB -->
+        <mxCell id="4" value="&lt;font style=&quot;font-size:11px;&quot;&gt;&lt;b&gt;MODELO&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:20px;&quot;&gt;MongoDB&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d6b656;verticalAlign=middle;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="760" y="280" width="180" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- EXTERNO — Cloudinary -->
+        <mxCell id="5" value="&lt;font style=&quot;font-size:11px;&quot;&gt;&lt;b&gt;EXTERNO&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:20px;&quot;&gt;Cloudinary&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;verticalAlign=middle;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="420" y="460" width="180" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Flecha Vista → Controlador -->
+        <mxCell id="6" value="HTTP / REST" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="2" target="3" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Flecha Controlador → Modelo -->
+        <mxCell id="7" value="Mongoose ODM" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="3" target="4" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Flecha Controlador → Cloudinary -->
+        <mxCell id="8" value="upload_stream" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="3" target="5" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

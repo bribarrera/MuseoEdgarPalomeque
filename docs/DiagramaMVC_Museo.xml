@@ -1,0 +1,213 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.0 Chrome/120.0.6039.219 Electron/31.3.0 Safari/537.36" version="24.0.0">
+  <diagram name="MVC_Museo_Etnografico" id="1">
+    <mxGraphModel dx="1843" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITULO -->
+        <mxCell id="titulo" parent="1" style="text;fontSize=24;fontStyle=1;strokeColor=none;" value="Arquitectura MVC - Museo Etnográfico Edgar Palomeque">
+          <mxGeometry height="40" width="1400" x="0" y="10" as="geometry" />
+        </mxCell>
+        
+        <!-- ============ VISTA LAYER (REACT) ============ -->
+        <mxCell id="vista_container" parent="1" style="swimlane;startSize=30;fontStyle=1;strokeColor=#2d6a4f;fillColor=#d5e8d4;fontColor=#2d6a4f;" value="VISTA - React + Tailwind CSS (Frontend - Puerto 5173)">
+          <mxGeometry height="280" width="350" x="20" y="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Vista: Auth -->
+        <mxCell id="v_auth" parent="vista_container" style="rounded=1;fillColor=#a8d5ba;strokeColor=#2d6a4f;fontColor=#fff;" value="🔐 Auth Pages&#xa;- Login&#xa;- Logout&#xa;- Session" vertex="1">
+          <mxGeometry height="70" width="100" x="10" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Vista: Dashboard -->
+        <mxCell id="v_dashboard" parent="vista_container" style="rounded=1;fillColor=#a8d5ba;strokeColor=#2d6a4f;fontColor=#fff;" value="📊 Dashboard&#xa;- Estadísticas&#xa;- Alertas&#xa;- Métricas" vertex="1">
+          <mxGeometry height="70" width="100" x="120" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Vista: Inventario -->
+        <mxCell id="v_inventario" parent="vista_container" style="rounded=1;fillColor=#a8d5ba;strokeColor=#2d6a4f;fontColor=#fff;" value="📦 Inventario&#xa;- Crear Pieza&#xa;- Listar&#xa;- Editar" vertex="1">
+          <mxGeometry height="70" width="100" x="230" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Vista: Gestión -->
+        <mxCell id="v_gestion" parent="vista_container" style="rounded=1;fillColor:#a8d5ba;strokeColor=#2d6a4f;fontColor=#fff;" value="⚙️ Administración&#xa;- Usuarios&#xa;- Categorías&#xa;- Ubicaciones" vertex="1">
+          <mxGeometry height="70" width="100" x="10" y="140" as="geometry" />
+        </mxCell>
+        
+        <!-- Vista: Consulta -->
+        <mxCell id="v_consulta" parent="vista_container" style="rounded=1;fillColor=#a8d5ba;strokeColor=#2d6a4f;fontColor=#fff;" value="🔍 Consulta&#xa;- Búsqueda&#xa;- Filtros&#xa;- Detalle" vertex="1">
+          <mxGeometry height="70" width="100" x="120" y="140" as="geometry" />
+        </Cell>
+        
+        <!-- Vista: Reportes -->
+        <mxCell id="v_reportes" parent="vista_container" style="rounded=1;fillColor=#a8d5ba;strokeColor=#2d6a4f;fontColor=#fff;" value="📄 Reportes&#xa;- PDF Inventario&#xa;- Estado Conserv.&#xa;- Movimientos" vertex="1">
+          <mxGeometry height="70" width="100" x="230" y="140" as="geometry" />
+        </mxCell>
+        
+        <!-- Vista: Context API -->
+        <mxCell id="v_context" parent="vista_container" style="rounded=1;fillColor=#7ec8a3;strokeColor=#2d6a4f;fontStyle=1;" value="🎯 Context API&#xa;- auth_context&#xa;- loading_context" vertex="1">
+          <mxGeometry height="60" width="320" x="10" y="220" as="geometry" />
+        </mxCell>
+        
+        <!-- ============ CONTROLADOR LAYER (NESTJS) ============ -->
+        <mxCell id="control_container" parent="1" style="swimlane;startSize=30;fontStyle=1;strokeColor=#1a3c5e;fillColor=#dae8fc;fontColor=#1a3c5e;" value="CONTROLADOR - NestJS (Backend - Puerto 3000)">
+          <mxGeometry height="280" width="400" x="400" y="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Controlador: Auth -->
+        <mxCell id="c_auth" parent="control_container" style="rounded=1;fillColor=#9fc5f8;strokeColor=#1a3c5e;fontColor=#fff;" value="AuthController&#xa;POST /auth/login&#xa;POST /auth/logout&#xa;POST /auth/register" vertex="1">
+          <mxGeometry height="80" width="90" x="10" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Controlador: Piezas -->
+        <mxCell id="c_piezas" parent="control_container" style="rounded=1;fillColor:#9fc5f8;strokeColor:#1a3c5e;fontColor=#fff;" value="PiezasController&#xa;GET /piezas&#xa;POST /piezas&#xa;PATCH /piezas/:id&#xa;GET /piezas/:id" vertex="1">
+          <mxGeometry height="80" width="90" x="110" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Controlador: Usuarios -->
+        <mxCell id="c_usuarios" parent="control_container" style="rounded=1;fillColor=#9fc5f8;strokeColor=#1a3c5e;fontColor=#fff;" value="UsuariosController&#xa;GET /usuarios&#xa;POST /usuarios&#xa;PATCH /usuarios/:id&#xa;DELETE /usuarios/:id" vertex="1">
+          <mxGeometry height="80" width="90" x="210" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Controlador: Otros -->
+        <mxCell id="c_otros" parent="control_container" style="rounded=1;fillColor=#9fc5f8;strokeColor=#1a3c5e;fontColor=#fff;" value="OtrosControllers&#xa;- Categorias&#xa;- Ubicaciones&#xa;- Reportes&#xa;- Roles" vertex="1">
+          <mxGeometry height="80" width="90" x="310" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Guardias (Guards) -->
+        <mxCell id="c_guards" parent="control_container" style="rounded=1;fillColor=#7fa8e8;strokeColor=#1a3c5e;fontStyle=1;" value="🛡️ GUARDS (Autenticación)&#xa;JwtAuthGuard - Valida token JWT&#xa;RolesGuard - Verifica rol de usuario" vertex="1">
+          <mxGeometry height="70" width="380" x="10" y="150" as="geometry" />
+        </mxCell>
+        
+        <!-- Servicios (Services) -->
+        <mxCell id="c_services" parent="control_container" style="rounded=1;fillColor=#7fa8e8;strokeColor=#1a3c5e;fontStyle=1;" value="📦 SERVICES (Lógica de Negocio)&#xa;- AuthService, PiezasService, UsuariosService&#xa;- CategoriasService, UbicacionesService, AuditoriaService" vertex="1">
+          <mxGeometry height="70" width="380" x="10" y="230" as="geometry" />
+        </mxCell>
+        
+        <!-- ============ MODELO LAYER (MONGODB) ============ -->
+        <mxCell id="modelo_container" parent="1" style="swimlane;startSize=30;fontStyle=1;strokeColor=#7a4f00;fillColor=#ffe6cc;fontColor=#7a4f00;" value="MODELO - MongoDB Atlas (Base de Datos)">
+          <mxGeometry height="280" width="450" x="920" y="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Colecciones: Usuarios -->
+        <mxCell id="m_usuarios" parent="modelo_container" style="rounded=1;fillColor=#ffd999;strokeColor=#7a4f00;fontColor=#000;" value="usuarios (collection)&#xa;├─ _id, nombres, apellidos&#xa;├─ email (unique)&#xa;├─ password_hash (bcrypt)&#xa;├─ rol (ref Rol)&#xa;└─ estado, timestamps" vertex="1">
+          <mxGeometry height="80" width="100" x="10" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Colecciones: Piezas -->
+        <mxCell id="m_piezas" parent="modelo_container" style="rounded=1;fillColor=#ffd999;strokeColor=#7a4f00;fontColor=#000;" value="piezas (collection)&#xa;├─ codigo_inventario&#xa;├─ nombre, descripción&#xa;├─ categoria, ubicacion_actual&#xa;├─ material, técnica&#xa;└─ creado_por, timestamps" vertex="1">
+          <mxGeometry height="80" width="110" x="120" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Colecciones: Estados -->
+        <mxCell id="m_estados" parent="modelo_container" style="rounded=1;fillColor=#ffd999;strokeColor=#7a4f00;fontColor=#000;" value="estados_conservacion&#xa;├─ pieza (ref)&#xa;├─ nivel (enum)&#xa;├─ descripción&#xa;└─ fecha_registro" vertex="1">
+          <mxGeometry height="80" width="110" x="240" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Colecciones: Movimientos -->
+        <mxCell id="m_movimientos" parent="modelo_container" style="rounded=1;fillColor:#ffd999;strokeColor=#7a4f00;fontColor=#000;" value="movimientos (collection)&#xa;├─ pieza (ref)&#xa;├─ ubicacion_origen&#xa;├─ ubicacion_destino&#xa;└─ fecha_salida, retorno" vertex="1">
+          <mxGeometry height="80" width="110" x="360" y="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Colecciones: Maestras -->
+        <mxCell id="m_maestras" parent="modelo_container" style="rounded=1;fillColor=#ffd999;strokeColor:#7a4f00;fontColor=#000;" value="categorias (collection)&#xa;├─ nombre&#xa;├─ descripción&#xa;└─ estado" vertex="1">
+          <mxGeometry height="70" width="100" x="10" y="150" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="m_ubicaciones" parent="modelo_container" style="rounded=1;fillColor:#ffd999;strokeColor=#7a4f00;fontColor=#000;" value="ubicaciones (collection)&#xa;├─ nombre, tipo&#xa;├─ descripción&#xa;└─ estado" vertex="1">
+          <mxGeometry height="70" width="110" x="120" y="150" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="m_roles" parent="modelo_container" style="rounded=1;fillColor=#ffd999;strokeColor=#7a4f00;fontColor=#000;" value="roles (collection)&#xa;├─ nombre (Administrador&#xa;│  Catalogador, Consultor)&#xa;└─ descripción" vertex="1">
+          <mxGeometry height="70" width="110" x="240" y="150" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="m_auditoria" parent="modelo_container" style="rounded=1;fillColor:#ffd999;strokeColor=#7a4f00;fontColor=#000;" value="auditoria (collection)&#xa;├─ usuario (ref)&#xa;├─ entidad, acción&#xa;└─ fecha_evento, ip" vertex="1">
+          <mxGeometry height="70" width="110" x="360" y="150" as="geometry" />
+        </mxCell>
+        
+        <!-- Indices -->
+        <mxCell id="m_indices" parent="modelo_container" style="rounded=1;fillColor=#e6b3ff;strokeColor=#7a4f00;fontStyle=1;" value="🔍 ÍNDICES IMPORTANTES:&#xa;- email (unique), codigo_inventario (unique)&#xa;- fecha_registro, fecha_evento" vertex="1">
+          <mxGeometry height="60" width="430" x="10" y="230" as="geometry" />
+        </mxCell>
+        
+        <!-- ============ SERVICIOS EXTERNOS ============ -->
+        <mxCell id="externo_container" parent="1" style="swimlane;startSize=30;fontStyle=1;strokeColor=#a0392a;fillColor=#f8cecc;fontColor=#a0392a;" value="SERVICIOS EXTERNOS">
+          <mxGeometry height="130" width="350" x="20" y="400" as="geometry" />
+        </mxCell>
+        
+        <!-- Cloudinary -->
+        <mxCell id="ext_cloudinary" parent="externo_container" style="rounded=1;fillColor=#f4b183;strokeColor=#a0392a;fontColor=#fff;fontStyle=1;" value="☁️ Cloudinary&#xa;- Upload piezas (JPG/PNG)&#xa;- Almacenamiento: museo/piezas/&#xa;- URL pública de imágenes" vertex="1">
+          <mxGeometry height="90" width="160" x="10" y="30" as="geometry" />
+        </mxCell>
+        
+        <!-- JWT/Auth -->
+        <mxCell id="ext_auth" parent="externo_container" style="rounded=1;fillColor=#f4b183;strokeColor=#a0392a;fontColor=#fff;fontStyle=1;" value="🔑 JWT (Passport)&#xa;- Tokens: 30min expiration&#xa;- Secret key en .env&#xa;- Refresh en login" vertex="1">
+          <mxGeometry height="90" width="160" x="180" y="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ============ FLUJOS DE DATOS ============ -->
+        
+        <!-- Vista -> Controlador (HTTP/REST) -->
+        <mxCell id="flujo1" edge="1" parent="1" source="vista_container" target="control_container" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="220" />
+              <mxPoint x="400" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="label1" parent="1" style="text;fontSize=11;fontStyle=1;strokeColor=none;" value="HTTP/REST Requests&#xa;Axios HTTP Client">
+          <mxGeometry height="30" width="120" x="370" y="200" as="geometry" />
+        </mxCell>
+        
+        <!-- Controlador -> Modelo (Mongoose) -->
+        <mxCell id="flujo2" edge="1" parent="1" source="control_container" target="modelo_container" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="220" />
+              <mxPoint x="920" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="label2" parent="1" style="text;fontSize=11;fontStyle=1;strokeColor=none;" value="Mongoose ODM&#xa;CRUD Operations">
+          <mxGeometry height="30" width="120" x="810" y="200" as="geometry" />
+        </mxCell>
+        
+        <!-- Controlador -> Cloudinary -->
+        <mxCell id="flujo3" edge="1" parent="1" source="control_container" target="ext_cloudinary" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#ff6600;strokeWidth=2;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="360" />
+              <mxPoint x="100" y="360" />
+              <mxPoint x="100" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="label3" parent="1" style="text;fontSize=11;fontStyle=1;strokeColor=none;" value="upload_stream&#xa;Multer + Cloudinary SDK">
+          <mxGeometry height="30" width="120" x="200" y="360" as="geometry" />
+        </mxCell>
+        
+        <!-- ============ FLUJO DE AUTENTICACIÓN ============ -->
+        <mxCell id="auth_flow" parent="1" style="rounded=1;fillColor=#fff9e6;strokeColor=#ffb300;strokeWidth=2;dashed=1;" value="FLUJO DE AUTENTICACIÓN JWT:&#xa;1️⃣ Usuario ingresa credenciales en Login&#xa;2️⃣ AuthController valida en BD (bcrypt)&#xa;3️⃣ JWT generado con roles (ADMINISTRADOR/CATALOGADOR/CONSULTOR)&#xa;4️⃣ Token almacenado en auth_context (localStorage)&#xa;5️⃣ Cada request lleva token en header 'Authorization: Bearer {token}'&#xa;6️⃣ JwtAuthGuard valida token en cada endpoint&#xa;7️⃣ RolesGuard verifica permisos según rol">
+          <mxGeometry height="140" width="680" x="20" y="600" as="geometry" />
+        </mxCell>
+        
+        <!-- ============ FLUJO DE NEGOCIO (PIEZA) ============ -->
+        <mxCell id="bizflow" parent="1" style="rounded=1;fillColor=#e6f3ff;strokeColor=#0066cc;strokeWidth=2;" value="FLUJO DE NEGOCIO (Ejemplo: REGISTRAR PIEZA):&#xa;1️⃣ Catalogador accede a 'Crear Pieza' (auth_context verifica rol)&#xa;2️⃣ Completa formulario con imagen&#xa;3️⃣ POST /piezas envia datos + JWT token&#xa;4️⃣ JwtAuthGuard valida token → RolesGuard verifica CATALOGADOR&#xa;5️⃣ PiezasController.create() ejecuta validaciones (DTOs)&#xa;6️⃣ Si imagen: FileInterceptor → upload a Cloudinary&#xa;7️⃣ PiezasService.crear() registra en colección 'piezas'&#xa;8️⃣ Creado_por + timestamps se asignan automáticamente&#xa;9️⃣ AuditoriaService.registrar() crea log de la acción&#xa;🔟 Response con Pieza creada retorna al frontend">
+          <mxGeometry height="140" width="680" x="700" y="600" as="geometry" />
+        </mxCell>
+        
+        <!-- ============ CONTROL DE ACCESO POR ROL ============ -->
+        <mxCell id="rbac" parent="1" style="rounded=1;fillColor=#f0e6ff;strokeColor=#6600cc;strokeWidth=2;dashed=1;" value="CONTROL DE ACCESO POR ROL (@Roles decorator):&#xa;🔴 ADMINISTRADOR: Acceso total (usuarios, piezas, categorías, reportes)&#xa;🟡 CATALOGADOR: Registrar/editar piezas, movimientos, estados de conservación&#xa;🟢 CONSULTOR: Solo lectura (listados, búsqueda, detalles, reportes)&#xa;Implementación: @UseGuards(RolesGuard) @Roles(RolEnum.CATALOGADOR) en controllers">
+          <mxGeometry height="80" width="680" x="20" y="810" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
