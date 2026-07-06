@@ -10,11 +10,11 @@ interface Form {
   idUbicacionDestino: string;
   fechaSalida: string;
   motivo: string;
-  idResponsable: string;
+  responsable: string;
 }
 
 const hoy = new Date().toISOString().split('T')[0];
-const inicial: Form = { tipoMovimiento: 'Traslado', idUbicacionDestino: '', fechaSalida: hoy, motivo: '', idResponsable: '' };
+const inicial: Form = { tipoMovimiento: 'Traslado', idUbicacionDestino: '', fechaSalida: hoy, motivo: '', responsable: '' };
 
 const TIPOS = ['Préstamo', 'Traslado', 'Exposición', 'Restauración', 'Devolución'];
 
@@ -95,10 +95,10 @@ export default function CrearMovimientoPage() {
 
         <div>
           <label className="label">Responsable *</label>
-          <select className="input" required value={form.idResponsable} onChange={set('idResponsable')}>
+          <select className="input" required value={form.responsable} onChange={set('responsable')}>
             <option value="">— Seleccione responsable —</option>
             {Array.isArray(usuarios) && usuarios.map((u) => (
-              <option key={u.idUsuario} value={u.idUsuario}>{u.nombres} {u.apellidos}</option>
+              <option key={u.idUsuario} value={`${u.nombres} ${u.apellidos}`}>{u.nombres} {u.apellidos}</option>
             ))}
           </select>
         </div>

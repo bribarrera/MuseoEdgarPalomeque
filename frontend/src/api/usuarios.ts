@@ -1,6 +1,13 @@
 // api/usuarios.ts — llamadas CRUD al backend de usuarios
 import http, { LIMITE_PAGINA } from './http_client';
 
+export interface UsuarioOpcion {
+  idUsuario: string;
+  nombres: string;
+  apellidos: string;
+  email: string;
+}
+
 export const listUsuarios = async (pagina = 1, limite = LIMITE_PAGINA) => {
   try {
     const { data } = await http.get(`/usuarios?pagina=${pagina}&limite=${limite}`);
