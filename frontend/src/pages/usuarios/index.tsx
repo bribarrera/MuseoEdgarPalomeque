@@ -6,7 +6,7 @@ import { deleteUsuario } from '../../api/usuarios';
 import { LIMITE_PAGINA } from '../../api/http_client';
 
 interface Usuario { idUsuario: string; nombres: string; apellidos: string; email: string; rol: { idRol: string; nombre: string }; estado: boolean; }
-interface PaginadoUsuarios { datos: Usuario[]; totalPaginas: number; }
+
 
 export default function UsuariosPage() {
   const navigate = useNavigate();
@@ -18,8 +18,8 @@ export default function UsuariosPage() {
 
   const cargar = async (p: number) => {
     const data = await listUsuarios(p, LIMITE_PAGINA);
-    setDatos(data.datos);
-    setTotal(data.totalPaginas);
+    setDatos(Array.isArray(data) ? data : []);
+    setTotal(Math.ceil((data?.length || 0) / LIMITE_PAGINA) || 1);
   };
 
   useEffect(() => { cargar(pagina); }, [pagina]);

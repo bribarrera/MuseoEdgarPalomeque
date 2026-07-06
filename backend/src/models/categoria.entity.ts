@@ -8,7 +8,7 @@ export type CategoriaDocument = Categoria & Document;
   collection: 'categorias',
   toJSON: {
     virtuals: true,
-    transform: (_doc, ret: any) => {
+    transform: (_doc, ret: Record<string, unknown>) => {
       ret.idCategoria = ret._id;
       delete ret.__v;
       return ret;

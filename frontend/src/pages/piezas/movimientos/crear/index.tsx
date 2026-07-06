@@ -3,17 +3,18 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createMovimiento } from '../../../../api/piezas';
 import { listUbicaciones, UbicacionOpcion } from '../../../../api/ubicaciones';
+import { listUsuarios, UsuarioOpcion } from '../../../../api/usuarios';
 
 interface Form {
   tipoMovimiento: string;
   idUbicacionDestino: string;
   fechaSalida: string;
   motivo: string;
-  responsable: string;
+  idResponsable: string;
 }
 
 const hoy = new Date().toISOString().split('T')[0];
-const inicial: Form = { tipoMovimiento: 'Traslado', idUbicacionDestino: '', fechaSalida: hoy, motivo: '', responsable: '' };
+const inicial: Form = { tipoMovimiento: 'Traslado', idUbicacionDestino: '', fechaSalida: hoy, motivo: '', idResponsable: '' };
 
 const TIPOS = ['Préstamo', 'Traslado', 'Exposición', 'Restauración', 'Devolución'];
 
@@ -22,10 +23,14 @@ export default function CrearMovimientoPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState<Form>(inicial);
   const [ubicaciones, setUbicaciones] = useState<UbicacionOpcion[]>([]);
+  const [usuarios, setUsuarios] = useState<UsuarioOpcion[]>([]);
   const [error, setError] = useState('');
   const [exito, setExito] = useState(false);
 
-  useEffect(() => { listUbicaciones().then(setUbicaciones); }, []);
+  useEffect(() => {
+    listUbicaciones().then(setUbicaciones);
+    listUsuarios().then(setUsuarios);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,9 +95,12 @@ export default function CrearMovimientoPage() {
 
         <div>
           <label className="label">Responsable *</label>
-          <input type="text" className="input" required minLength={3} maxLength={200}
-            value={form.responsable} onChange={set('responsable')}
-            placeholder="Nombre del responsable" />
+          <select className="input" required value={form.idResponsable} onChange={set('idResponsable')}>
+            <option value="">— Seleccione responsable —</option>
+            {Array.isArray(usuarios) && usuarios.map((u) => (
+              <option key={u.idUsuario} value={u.idUsuario}>{u.nombres} {u.apellidos}</option>
+            ))}
+          </select>
         </div>
 
         <div className="flex gap-3 pt-2">

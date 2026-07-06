@@ -34,7 +34,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex">
       {/* Panel izquierdo — imagen */}
       <div className="hidden md:flex w-1/2 relative">
-        <img src="/login.jpeg" alt="Museo Etnográfico" className="w-full h-full object-cover" />
+        <img src="/login.jpeg" alt="Museo Etnográfico" className="w-full h-full object-cover" fetchPriority="high" width="720" height="1080" />
         <div className="absolute inset-0 bg-[#6B0F0F]/70 flex flex-col items-center justify-center text-white px-10">
           <h1 className="text-3xl font-bold text-center leading-snug">Museo Etnográfico</h1>
           <h2 className="text-2xl font-bold text-center text-red-300 mt-1">"Edgar Palomeque"</h2>
@@ -43,11 +43,11 @@ export default function LoginPage() {
       </div>
 
       {/* Panel derecho — formulario */}
-      <div className="flex-1 flex items-center justify-center bg-gray-50 px-8">
+      <main className="flex-1 flex items-center justify-center bg-gray-50 px-8">
         <div className="w-full max-w-sm">
           <div className="mb-8 text-center">
             <div className="w-16 h-16 rounded-full bg-[#6B0F0F] mx-auto mb-4 overflow-hidden">
-              <img src="/login.jpeg" alt="logo" className="w-full h-full object-cover" />
+              <img src="/login.jpeg" alt="logo" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <h3 className="text-2xl font-bold text-[#6B0F0F]">Iniciar Sesión</h3>
             <p className="text-sm text-gray-500 mt-1">Ingresa tus credenciales para continuar</p>
@@ -55,13 +55,13 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && <p className="text-red-500 text-sm text-center">{error}</p>}
             <div>
-              <label className="label">Correo electrónico</label>
-              <input className="input" type="email" required value={form.email}
+              <label htmlFor="email" className="label">Correo electrónico</label>
+              <input id="email" className="input" type="email" required value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })} />
             </div>
             <div>
-              <label className="label">Contraseña</label>
-              <input className="input" type="password" required minLength={8} value={form.password}
+              <label htmlFor="password" className="label">Contraseña</label>
+              <input id="password" className="input" type="password" required minLength={8} value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })} />
             </div>
             <button
@@ -71,7 +71,7 @@ export default function LoginPage() {
             </button>
           </form>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

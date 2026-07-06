@@ -8,7 +8,7 @@ export type UsuarioDocument = Usuario & Document;
   collection: 'usuarios',
   toJSON: {
     virtuals: true,
-    transform: (_doc, ret: any) => {
+    transform: (_doc, ret: Record<string, unknown>) => {
       ret.idUsuario = ret._id;
       delete ret.passwordHash;
       delete ret.__v;

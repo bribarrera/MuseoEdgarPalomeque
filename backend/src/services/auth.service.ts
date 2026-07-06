@@ -30,7 +30,7 @@ export class AuthService {
 
     await this.usuarioModel.findByIdAndUpdate(usuario._id, { ultimoAcceso: new Date() });
 
-    const rol = usuario.rol as any;
+    const rol = usuario.rol as { nombre?: string };
     const token = this.jwtService.sign({
       sub: String(usuario._id),
       email: usuario.email,

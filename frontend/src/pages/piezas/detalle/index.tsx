@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { readPieza } from '../../../api/piezas';
 import { useAuth } from '../../../context/auth_context';
 import { ROLES } from '../../../api/http_client';
+import http from '../../../api/http_client';
 
 interface Pieza {
   idPieza: string; codigoInventario: string; nombre: string; descripcion: string;
@@ -20,8 +21,27 @@ export default function DetallePiezaPage() {
   const puedeEditar = sesion?.rol === ROLES.ADMINISTRADOR || sesion?.rol === ROLES.CATALOGADOR;
   const [pieza, setPieza] = useState<Pieza | null>(null);
   const [imgActiva, setImgActiva] = useState(0);
+  const [mostrarQR, setMostrarQR] = useState(false);
+  const [qr, setQr] = useState<string>('');
 
   useEffect(() => { readPieza(id!).then(setPieza); }, [id]);
+
+  const abrirQR = async () => {
+    try {
+      const { data } = await http.get(`/piezas/public/${id}/qr`);
+      setQr(data.qr);
+      setMostrarQR(true);
+    } catch (err) {
+      console.error('Error al cargar QR', err);
+    }
+  };
+
+  const descargarQR = () => {
+    const link = document.createElement('a');
+    link.href = qr;
+    link.download = `qr-${pieza?.codigoInventario}.png`;
+    link.click();
+  };
 
   if (!pieza) return <p className="text-gray-500 text-sm">Cargando...</p>;
 
@@ -136,6 +156,26 @@ export default function DetallePiezaPage() {
           <button className="btn-gray" onClick={() => navigate(`/piezas/${pieza.idPieza}/movimientos/historial`)}>
             Ver trazabilidad
           </button>
+        </div>
+      )}
+
+      {/* QR de la pieza */}
+      <button className="btn-blue w-full" onClick={abrirQR}>
+        Mostrar código QR
+      </button>
+
+      {/* Modal QR */}
+      {mostrarQR && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center gap-4 max-w-sm">
+            <h3 className="text-lg font-bold">Código QR - {pieza.codigoInventario}</h3>
+            {qr && <img src={qr} alt="QR" className="w-64 h-64 border-2 border-gray-300 p-2" />}
+            <p className="text-sm text-gray-500 text-center">Escanea para ver detalles públicos de la pieza</p>
+            <div className="flex gap-3 w-full">
+              <button onClick={descargarQR} className="btn-blue flex-1">Descargar</button>
+              <button onClick={() => setMostrarQR(false)} className="btn-gray flex-1">Cerrar</button>
+            </div>
+          </div>
         </div>
       )}
     </div>

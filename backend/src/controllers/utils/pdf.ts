@@ -2,7 +2,8 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const PDFDocument = require('pdfkit');
 
-function encabezado(doc: any, titulo: string, subtitulo: string, total: number) {
+type PDFDoc = ReturnType<typeof PDFDocument>;
+function encabezado(doc: PDFDoc, titulo: string, subtitulo: string, total: number) {
   doc.font('Helvetica-Bold').fontSize(13).fillColor('#4B0E0E')
     .text('MUSEO ETNOGRÁFICO "EDGAR PALOMEQUE"', 40, 40, { width: 515, align: 'center' });
   doc.font('Helvetica').fontSize(9).fillColor('#374151')
@@ -16,7 +17,7 @@ function encabezado(doc: any, titulo: string, subtitulo: string, total: number) 
   doc.moveTo(40, 118).lineTo(555, 118).strokeColor('#9CA3AF').lineWidth(0.5).stroke();
 }
 
-function cel(doc: any, text: string, x: number, y: number, w: number) {
+function cel(doc: PDFDoc, text: string, x: number, y: number, w: number) {
   doc.text(String(text ?? '—'), x, y, { width: w, lineBreak: false });
 }
 

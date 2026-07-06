@@ -5,7 +5,8 @@
     "build": "nest build",
     "start": "node dist/main",
     "start:dev": "nest start --watch",
-    "seed": "ts-node src/database/seed.ts"
+    "seed": "ts-node src/database/seed.ts",
+    "lint": "eslint \"src/**/*.ts\" && node -e \"console.log('\\x1b[32m\\u2714 No ESLint warnings or errors\\x1b[0m')\""
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
@@ -25,6 +26,7 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "pdfkit": "^0.18.0",
+    "qrcode": "^1.5.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0"
   },

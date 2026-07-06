@@ -9,6 +9,7 @@ import { Auditoria, AuditoriaSchema } from '../models/auditoria.entity';
 import { Conservacion, ConservacionSchema } from '../models/conservacion.entity';
 import { Movimiento, MovimientoSchema } from '../models/movimiento.entity';
 import { PiezasController } from '../controllers/piezas.controller';
+import { PiezasPublicController } from '../controllers/piezas-public.controller';
 import { CategoriasController } from '../controllers/categorias.controller';
 import { UbicacionesController } from '../controllers/ubicaciones.controller';
 import { PiezasService } from '../services/piezas.service';
@@ -27,7 +28,7 @@ import { UbicacionesService } from '../services/ubicaciones.service';
     ]),
     MulterModule.register({ dest: './uploads/piezas' }),
   ],
-  controllers: [PiezasController, CategoriasController, UbicacionesController],
+  controllers: [PiezasController, PiezasPublicController, CategoriasController, UbicacionesController],
   providers: [PiezasService, CategoriasService, UbicacionesService],
 })
 export class PiezasModule {}

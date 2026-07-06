@@ -8,7 +8,7 @@ export type RolDocument = Rol & Document;
   collection: 'roles',
   toJSON: {
     virtuals: true,
-    transform: (_doc, ret: any) => {
+    transform: (_doc, ret: Record<string, unknown>) => {
       ret.idRol = ret._id;
       delete ret.__v;
       return ret;

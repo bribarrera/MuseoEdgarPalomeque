@@ -42,6 +42,8 @@ import UbicacionesPage   from './pages/ubicaciones/index';
 import CrearUbicacionPage from './pages/ubicaciones/crear/index';
 import EditarUbicacionPage from './pages/ubicaciones/editar/index';
 import BusquedaAvanzadaPage from './pages/piezas/busqueda/index';
+import PiezaPublicPage from './pages/piezas/public/index';
+import PiezaQRPage from './pages/piezas/qr/index';
 import ReportesPage from './pages/reportes/index';
 import AuditoriaPage from './pages/auditoria/index';
 
@@ -53,6 +55,7 @@ export default function App() {
         <Routes>
           {/* Pública */}
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/piezas/public/:id" element={<PiezaPublicPage />} />
 
           {/* Rutas protegidas por sesión */}
           <Route element={<SessionLayout />}>
@@ -81,6 +84,7 @@ export default function App() {
 
             {/* Todos los roles autenticados */}
             <Route path="/piezas"                       element={<PiezasPage />} />
+            <Route path="/piezas/:id/qr"               element={<PiezaQRPage />} />
             <Route path="/piezas/:id"                   element={<DetallePiezaPage />} />
 
             {/* Sprint 3 — Conservación (Catalogador y Admin) */}

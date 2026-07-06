@@ -16,7 +16,7 @@ function descargar(blob: Blob, nombre: string) {
 }
 
 async function leerErrorBlob(err: unknown): Promise<string> {
-  const e = err as any;
+  const e = err as { response?: { data?: unknown } };
   if (e?.response?.data instanceof Blob) {
     try {
       const texto = await (e.response.data as Blob).text();

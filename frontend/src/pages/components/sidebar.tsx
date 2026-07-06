@@ -64,11 +64,11 @@ export default function Sidebar() {
       {/* Logo y nombre */}
       <div className="flex flex-col items-center py-6 px-4 border-b border-red-900">
         <div className="w-20 h-20 rounded-lg bg-white/10 overflow-hidden mb-3 flex items-center justify-center">
-          <img src="/login.jpeg" alt="Museo" className="w-full h-full object-cover" />
+          <img src="/login.jpeg" alt="" role="presentation" className="w-full h-full object-cover" />
         </div>
         <p className="text-sm font-bold text-center leading-tight">Museo Etnográfico</p>
         <p className="text-sm font-bold text-center leading-tight text-red-300">"Edgar Palomeque"</p>
-        <p className="text-xs text-red-400 mt-1 text-center">Sistema de Gestión Cultural</p>
+        <p className="text-xs text-white/80 mt-1 text-center">Sistema de Gestión Cultural</p>
       </div>
 
       {/* Navegación */}

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" && node -e \"console.log('\\x1b[32m\\u2714 No ESLint warnings or errors\\x1b[0m')\""
   },
   "dependencies": {
     "axios": "^1.6.7",

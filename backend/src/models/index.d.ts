@@ -3,7 +3,7 @@
 // Respuesta genérica de la API
 export type ResponseData = {
   message?: string;
-  data?: any;
+  data?: unknown;
   success: boolean;
 };
 

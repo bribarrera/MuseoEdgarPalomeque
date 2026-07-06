@@ -2,8 +2,13 @@
 import http, { LIMITE_PAGINA } from './http_client';
 
 export const listUsuarios = async (pagina = 1, limite = LIMITE_PAGINA) => {
-  const { data } = await http.get(`/usuarios?pagina=${pagina}&limite=${limite}`);
-  return data;
+  try {
+    const { data } = await http.get(`/usuarios?pagina=${pagina}&limite=${limite}`);
+    return Array.isArray(data?.datos) ? data.datos : [];
+  } catch (err) {
+    console.error('Error listando usuarios:', err);
+    return [];
+  }
 };
 
 export const readUsuario = async (id: string) => {

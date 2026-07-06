@@ -8,7 +8,7 @@ export type UbicacionDocument = Ubicacion & Document;
   collection: 'ubicaciones',
   toJSON: {
     virtuals: true,
-    transform: (_doc, ret: any) => {
+    transform: (_doc, ret: Record<string, unknown>) => {
       ret.idUbicacion = ret._id;
       delete ret.__v;
       return ret;

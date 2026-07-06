@@ -111,9 +111,9 @@ export default function PiezasPage() {
                 <td className="td"><span className="text-xs text-gray-700">{p.estado}</span></td>
                 <td className="td text-xs">{new Date(p.fechaIngreso).toLocaleDateString('es-EC')}</td>
                 <td className="td flex gap-2">
-                  {/* Ver detalle — HU-007 CA-5 */}
-                  <button title="Ver detalle" className="bg-gray-500 hover:bg-gray-600 rounded p-1.5 transition-colors text-white text-xs"
-                    onClick={() => navigate(`/piezas/${p.idPieza}`)}>
+                  {/* Ver QR — HU-007 CA-5 */}
+                  <button title="Ver QR" className="bg-gray-500 hover:bg-gray-600 rounded p-1.5 transition-colors text-white text-xs"
+                    onClick={() => navigate(`/piezas/${p.idPieza}/qr`)}>
                     Ver
                   </button>
                   {(esAdmin || sesion?.rol === ROLES.CATALOGADOR) && (
