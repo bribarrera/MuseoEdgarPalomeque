@@ -18,14 +18,15 @@ export class PiezasPublicController {
   async generarQR(@Param('id') id: string, @Res() res: Response) {
     try {
       // @ts-ignore
-      const QRCode = await import('qrcode');
+      const { toDataURL } = await import('qrcode');
       const urlQR = `${process.env.FRONTEND_URL || 'http://localhost:5174'}/piezas/public/${id}`;
-      const qrImage = await QRCode.toDataURL(urlQR, { width: 300, margin: 2 });
+      const qrImage = await toDataURL(urlQR, { width: 300, margin: 2 });
 
       res.setHeader('Content-Type', 'application/json');
       res.json({ qr: qrImage, url: urlQR });
     } catch (error) {
-      res.status(500).json({ error: 'Error al generar QR' });
+      console.error('QR Error:', error);
+      res.status(500).json({ error: 'Error al generar QR', details: (error as Error).message });
     }
   }
 }
