@@ -17,11 +17,11 @@ export class PiezasPublicController {
   @Get(':id/qr')
   async generarQR(@Param('id') id: string, @Res() res: Response) {
     try {
+      // @ts-ignore
       const QRCode = await import('qrcode');
       const urlQR = `${process.env.FRONTEND_URL || 'http://localhost:5174'}/piezas/public/${id}`;
       const qrImage = await QRCode.toDataURL(urlQR, { width: 300, margin: 2 });
 
-      // Retorna como data URL para que el frontend lo pueda descargar
       res.setHeader('Content-Type', 'application/json');
       res.json({ qr: qrImage, url: urlQR });
     } catch (error) {
