@@ -2,7 +2,6 @@
 import { Controller, Get, Param, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { PiezasService } from '../services/piezas.service';
-import * as QRCode from 'qrcode';
 
 @Controller('piezas/public')
 export class PiezasPublicController {
@@ -18,6 +17,7 @@ export class PiezasPublicController {
   @Get(':id/qr')
   async generarQR(@Param('id') id: string, @Res() res: Response) {
     try {
+      const QRCode = await import('qrcode');
       const urlQR = `${process.env.FRONTEND_URL || 'http://localhost:5174'}/piezas/public/${id}`;
       const qrImage = await QRCode.toDataURL(urlQR, { width: 300, margin: 2 });
 
