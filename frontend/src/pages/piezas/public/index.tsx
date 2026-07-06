@@ -1,6 +1,7 @@
 // pages/piezas/public/index.tsx — HU: Vista pública de pieza con QR
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import QRCodeStyling from 'qr-code-styling';
 import http from '../../../api/http_client';
 
 interface Pieza {
@@ -18,20 +19,30 @@ interface Pieza {
 
 export default function PiezaPublicPage() {
   const { id } = useParams();
+  const qrRef = useRef<HTMLDivElement>(null);
   const [pieza, setPieza] = useState<Pieza | null>(null);
-  const [qr, setQr] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const cargar = async () => {
       try {
-        const [piezaRes, qrRes] = await Promise.all([
-          http.get(`/piezas/public/${id}`),
-          http.get(`/piezas/public/${id}/qr`),
-        ]);
+        const piezaRes = await http.get(`/piezas/public/${id}`);
         setPieza(piezaRes.data);
-        setQr(qrRes.data.qr);
+
+        const urlQR = window.location.href;
+        const qrCode = new QRCodeStyling({
+          width: 200,
+          height: 200,
+          data: urlQR,
+          margin: 10,
+          type: 'svg',
+        });
+
+        if (qrRef.current) {
+          qrRef.current.innerHTML = '';
+          qrCode.append(qrRef.current);
+        }
       } catch (err) {
         setError('Error al cargar pieza');
       } finally {
@@ -42,10 +53,14 @@ export default function PiezaPublicPage() {
   }, [id]);
 
   const descargarQR = () => {
-    const link = document.createElement('a');
-    link.href = qr;
-    link.download = `qr-${pieza?.codigoInventario}.png`;
-    link.click();
+    const qrCode = new QRCodeStyling({
+      width: 300,
+      height: 300,
+      data: window.location.href,
+      margin: 10,
+      type: 'svg',
+    });
+    qrCode.download({ name: `qr-${pieza?.codigoInventario}`, extension: 'png' });
   };
 
   if (loading) return <div className="p-6">Cargando...</div>;
@@ -73,14 +88,12 @@ export default function PiezaPublicPage() {
           {pieza.imagenes?.[0] && (
             <img src={pieza.imagenes[0]} alt={pieza.nombre} className="w-full h-64 object-cover rounded-lg" />
           )}
-          {qr && (
-            <div className="bg-white p-4 rounded-lg border-2 border-gray-300">
-              <img src={qr} alt="QR Code" className="w-48 h-48" />
-              <button onClick={descargarQR} className="btn-blue mt-3 w-full">
-                Descargar QR
-              </button>
-            </div>
-          )}
+          <div className="bg-white p-4 rounded-lg border-2 border-gray-300">
+            <div ref={qrRef} />
+            <button onClick={descargarQR} className="btn-blue mt-3 w-full">
+              Descargar QR
+            </button>
+          </div>
         </div>
       </div>
     </div>

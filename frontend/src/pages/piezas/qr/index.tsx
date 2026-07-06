@@ -1,23 +1,35 @@
 // pages/piezas/qr/index.tsx — HU: Mostrar solo QR de pieza
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import QRCodeStyling from 'qr-code-styling';
 import http from '../../../api/http_client';
 
 export default function PiezaQRPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [qr, setQr] = useState<string>('');
+  const qrRef = useRef<HTMLDivElement>(null);
   const [codigo, setCodigo] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const cargar = async () => {
       try {
-        const res = await http.get(`/piezas/public/${id}/qr`);
-        setQr(res.data.qr);
-        // Obtener código de pieza
         const piezaRes = await http.get(`/piezas/public/${id}`);
         setCodigo(piezaRes.data.codigoInventario);
+
+        const urlQR = `${window.location.origin}/piezas/public/${id}`;
+        const qrCode = new QRCodeStyling({
+          width: 300,
+          height: 300,
+          data: urlQR,
+          margin: 10,
+          type: 'svg',
+        });
+
+        if (qrRef.current) {
+          qrRef.current.innerHTML = '';
+          qrCode.append(qrRef.current);
+        }
       } catch (err) {
         console.error('Error cargando QR:', err);
       } finally {
@@ -28,10 +40,14 @@ export default function PiezaQRPage() {
   }, [id]);
 
   const descargarQR = () => {
-    const link = document.createElement('a');
-    link.href = qr;
-    link.download = `qr-${codigo}.png`;
-    link.click();
+    const qrCode = new QRCodeStyling({
+      width: 300,
+      height: 300,
+      data: `${window.location.origin}/piezas/public/${id}`,
+      margin: 10,
+      type: 'svg',
+    });
+    qrCode.download({ name: `qr-${codigo}`, extension: 'png' });
   };
 
   if (loading) return <div className="flex items-center justify-center h-screen">Cargando...</div>;
@@ -42,11 +58,7 @@ export default function PiezaQRPage() {
         <h2 className="text-2xl font-bold mb-2">Código QR</h2>
         <p className="text-gray-500 mb-6">{codigo}</p>
 
-        {qr && (
-          <div className="bg-white p-6 rounded-lg border-2 border-gray-300 inline-block mb-6">
-            <img src={qr} alt="QR Code" className="w-64 h-64" />
-          </div>
-        )}
+        <div className="bg-white p-6 rounded-lg border-2 border-gray-300 inline-block mb-6" ref={qrRef} />
 
         <p className="text-sm text-gray-600 mb-6">
           Escanea con tu celular para ver toda la información de la pieza
