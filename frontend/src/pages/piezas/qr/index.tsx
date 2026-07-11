@@ -23,13 +23,15 @@ export default function PiezaQRPage() {
           height: 300,
           data: urlQR,
           margin: 10,
-          type: 'svg'
+          type: 'canvas'
         });
 
-        if (qrRef.current) {
-          qrRef.current.innerHTML = '';
-          qrCode.append(qrRef.current);
-        }
+        setTimeout(() => {
+          if (qrRef.current) {
+            qrRef.current.innerHTML = '';
+            qrCode.append(qrRef.current);
+          }
+        }, 100);
       } catch (err) {
         console.error('Error cargando QR:', err);
       } finally {

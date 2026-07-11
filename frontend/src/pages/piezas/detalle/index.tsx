@@ -36,12 +36,12 @@ export default function DetallePiezaPage() {
           height: 300,
           data: urlPublica,
           margin: 10,
-          type: 'svg'
+          type: 'canvas'
         });
         qrRef.current.innerHTML = '';
         qrCode.append(qrRef.current);
       }
-    }, 0);
+    }, 100);
   };
 
   const descargarQR = () => {

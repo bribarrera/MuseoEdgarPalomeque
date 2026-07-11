@@ -37,13 +37,15 @@ export default function PiezaPublicPage() {
           height: 200,
           data: urlQR,
           margin: 10,
-          type: 'svg'
+          type: 'canvas'
         });
 
-        if (qrRef.current) {
-          qrRef.current.innerHTML = '';
-          qrCode.append(qrRef.current);
-        }
+        setTimeout(() => {
+          if (qrRef.current) {
+            qrRef.current.innerHTML = '';
+            qrCode.append(qrRef.current);
+          }
+        }, 100);
       } catch (err) {
         setError('Error al cargar pieza');
       } finally {
