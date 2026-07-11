@@ -23,7 +23,15 @@ export default function PiezaQRPage() {
           height: 300,
           data: urlQR,
           margin: 10,
-          type: 'svg',
+          type: 'canvas',
+          dotsOptions: {
+            color: '#000000',
+            type: 'square'
+          },
+          cornersSquareOptions: {
+            color: '#000000',
+            type: 'square'
+          }
         });
 
         if (qrRef.current) {
@@ -45,7 +53,15 @@ export default function PiezaQRPage() {
       height: 300,
       data: `${window.location.origin}/piezas/public/${id}`,
       margin: 10,
-      type: 'svg',
+      type: 'canvas',
+      dotsOptions: {
+        color: '#000000',
+        type: 'square'
+      },
+      cornersSquareOptions: {
+        color: '#000000',
+        type: 'square'
+      }
     });
     qrCode.download({ name: `qr-${codigo}`, extension: 'png' });
   };

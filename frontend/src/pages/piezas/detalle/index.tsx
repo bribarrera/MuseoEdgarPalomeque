@@ -1,10 +1,10 @@
 // piezas/detalle/index.tsx — HU-008: ver detalle completo de una pieza
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import QRCodeStyling from 'qr-code-styling';
 import { readPieza } from '../../../api/piezas';
 import { useAuth } from '../../../context/auth_context';
 import { ROLES } from '../../../api/http_client';
-import http from '../../../api/http_client';
 
 interface Pieza {
   idPieza: string; codigoInventario: string; nombre: string; descripcion: string;
@@ -19,28 +19,57 @@ export default function DetallePiezaPage() {
   const navigate = useNavigate();
   const { sesion } = useAuth();
   const puedeEditar = sesion?.rol === ROLES.ADMINISTRADOR || sesion?.rol === ROLES.CATALOGADOR;
+  const qrRef = useRef<HTMLDivElement>(null);
   const [pieza, setPieza] = useState<Pieza | null>(null);
   const [imgActiva, setImgActiva] = useState(0);
   const [mostrarQR, setMostrarQR] = useState(false);
-  const [qr, setQr] = useState<string>('');
 
   useEffect(() => { readPieza(id!).then(setPieza); }, [id]);
 
-  const abrirQR = async () => {
-    try {
-      const { data } = await http.get(`/piezas/public/${id}/qr`);
-      setQr(data.qr);
-      setMostrarQR(true);
-    } catch (err) {
-      console.error('Error al cargar QR', err);
-    }
+  const abrirQR = () => {
+    setMostrarQR(true);
+    setTimeout(() => {
+      if (qrRef.current) {
+        const urlPublica = `${window.location.origin}/piezas/public/${id}`;
+        const qrCode = new QRCodeStyling({
+          width: 300,
+          height: 300,
+          data: urlPublica,
+          margin: 10,
+          type: 'canvas',
+          dotsOptions: {
+            color: '#000000',
+            type: 'square'
+          },
+          cornersSquareOptions: {
+            color: '#000000',
+            type: 'square'
+          }
+        });
+        qrRef.current.innerHTML = '';
+        qrCode.append(qrRef.current);
+      }
+    }, 0);
   };
 
   const descargarQR = () => {
-    const link = document.createElement('a');
-    link.href = qr;
-    link.download = `qr-${pieza?.codigoInventario}.png`;
-    link.click();
+    const urlPublica = `${window.location.origin}/piezas/public/${id}`;
+    const qrCode = new QRCodeStyling({
+      width: 300,
+      height: 300,
+      data: urlPublica,
+      margin: 10,
+      type: 'canvas',
+      dotsOptions: {
+        color: '#000000',
+        type: 'square'
+      },
+      cornersSquareOptions: {
+        color: '#000000',
+        type: 'square'
+      }
+    });
+    qrCode.download({ name: `qr-${pieza?.codigoInventario}`, extension: 'png' });
   };
 
   if (!pieza) return <p className="text-gray-500 text-sm">Cargando...</p>;
@@ -169,7 +198,7 @@ export default function DetallePiezaPage() {
         <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50">
           <div className="bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center gap-4 max-w-sm">
             <h3 className="text-lg font-bold">Código QR - {pieza.codigoInventario}</h3>
-            {qr && <img src={qr} alt="QR" className="w-64 h-64 border-2 border-gray-300 p-2" />}
+            <div className="bg-white p-6 rounded-lg border-2 border-gray-300" ref={qrRef} />
             <p className="text-sm text-gray-500 text-center">Escanea para ver detalles públicos de la pieza</p>
             <div className="flex gap-3 w-full">
               <button onClick={descargarQR} className="btn-blue flex-1">Descargar</button>

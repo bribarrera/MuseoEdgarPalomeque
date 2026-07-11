@@ -56,6 +56,7 @@ export default function App() {
           {/* Pública */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/piezas/public/:id" element={<PiezaPublicPage />} />
+          <Route path="/piezas/:id/qr" element={<PiezaQRPage />} />
 
           {/* Rutas protegidas por sesión */}
           <Route element={<SessionLayout />}>
@@ -80,12 +81,11 @@ export default function App() {
             <Route element={<RoleLayout roles={[ROLES.ADMINISTRADOR, ROLES.CATALOGADOR]} />}>
               <Route path="/piezas/crear"               element={<CrearPiezaPage />} />
               <Route path="/piezas/editar/:id"          element={<EditarPiezaPage />} />
+              <Route path="/piezas/:id"                 element={<DetallePiezaPage />} />
             </Route>
 
             {/* Todos los roles autenticados */}
             <Route path="/piezas"                       element={<PiezasPage />} />
-            <Route path="/piezas/:id/qr"               element={<PiezaQRPage />} />
-            <Route path="/piezas/:id"                   element={<DetallePiezaPage />} />
 
             {/* Sprint 3 — Conservación (Catalogador y Admin) */}
             <Route element={<RoleLayout roles={[ROLES.ADMINISTRADOR, ROLES.CATALOGADOR]} />}>
