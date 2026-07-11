@@ -23,15 +23,7 @@ export default function PiezaQRPage() {
           height: 300,
           data: urlQR,
           margin: 10,
-          type: 'canvas',
-          dotsOptions: {
-            color: '#000000',
-            type: 'square'
-          },
-          cornersSquareOptions: {
-            color: '#000000',
-            type: 'square'
-          }
+          type: 'svg'
         });
 
         if (qrRef.current) {

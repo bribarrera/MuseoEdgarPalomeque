@@ -37,15 +37,7 @@ export default function PiezaPublicPage() {
           height: 200,
           data: urlQR,
           margin: 10,
-          type: 'canvas',
-          dotsOptions: {
-            color: '#000000',
-            type: 'square'
-          },
-          cornersSquareOptions: {
-            color: '#000000',
-            type: 'square'
-          }
+          type: 'svg'
         });
 
         if (qrRef.current) {
